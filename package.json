@@ -1,0 +1,36 @@
+{
+  "name": "datedelta",
+  "version": "1.0.0",
+  "description": "Delta Date for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "devel": "npm test && chokidar 'spec/**/*' 'index.js' -c 'npm test'",
+    "babel": "babel src/index.js -o index.js",
+    "eslint": "eslint src/index.js",
+    "test": "npm run eslint && npm run babel && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rianby64/datedelta.git"
+  },
+  "keywords": [
+    "Date",
+    "Delta",
+    "DeltaDate",
+    "Javascript"
+  ],
+  "author": "Andres Rios <rianby64@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rianby64/datedelta/issues"
+  },
+  "homepage": "https://github.com/rianby64/datedelta#readme",
+  "devDependencies": {
+    "apolog": "^1.0.1",
+    "babel-cli": "^6.6.5",
+    "babel-eslint": "^5.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.6.5",
+    "chokidar-cli": "^1.2.0",
+    "jasmine": "^2.4.1"
+  }
+}
