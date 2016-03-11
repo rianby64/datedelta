@@ -10,8 +10,32 @@ export default function DateDelta() {
   this.second = 0;
   this.millisecond = 0;
 
-  if (typeof(arguments[0]) === 'number') {
+  if ((arguments.length > 0) && (typeof(arguments[0]) === 'number')) {
     this.year = parseInt(arguments[0], 10);
+  }
+
+  if ((arguments.length > 1) && (typeof(arguments[1]) === 'number')) {
+    this.month = parseInt(arguments[1], 10);
+  }
+
+  if ((arguments.length > 2) && (typeof(arguments[2]) === 'number')) {
+    this.day = parseInt(arguments[2], 10);
+  }
+
+  if ((arguments.length > 3) && (typeof(arguments[3]) === 'number')) {
+    this.hour = parseInt(arguments[3], 10);
+  }
+
+  if ((arguments.length > 4) && (typeof(arguments[4]) === 'number')) {
+    this.minute = parseInt(arguments[4], 10);
+  }
+
+  if ((arguments.length > 5) && (typeof(arguments[5]) === 'number')) {
+    this.second = parseInt(arguments[5], 10);
+  }
+
+  if ((arguments.length > 6) && (typeof(arguments[6]) === 'number')) {
+    this.millisecond = parseInt(arguments[6], 10);
   }
 }
 

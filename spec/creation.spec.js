@@ -8,8 +8,31 @@ feature('Create a DateDelta', function() {
     this.result = new DateDelta();
   });
 
+  when(/calling new DateDelta\(([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+)\)/, function(_year, _month, _day, _hour, _minute, _second, _millisecond) {
+    var year = parseInt(_year, 10);
+    var month = parseInt(_month, 10);
+    var day = parseInt(_day, 10);
+    var hour = parseInt(_hour, 10);
+    var minute = parseInt(_minute, 10);
+    var second = parseInt(_second, 10);
+    var millisecond = parseInt(_millisecond, 10);
+    expect(DateDelta instanceof Function).toBe(true);
+    this.result = new DateDelta(year, month, day, hour, minute, second, millisecond);
+  });
+
+  then('the result has the data', function(data) {
+    var r = this.result;
+    data.forEach(function(item) {
+      var fn = item[0];
+      var value = parseInt(item[1], 10);
+
+      expect(r[fn] instanceof Function).toBe(true);
+      expect(r[fn]()).toBe(value);
+    });
+  });
+
   when(/calling new DateDelta\((.*)\)/, function(_year) {
-    var year = parseInt(_year);
+    var year = parseInt(_year, 10);
     expect(DateDelta instanceof Function).toBe(true);
     this.result = new DateDelta(year);
   });
@@ -68,15 +91,18 @@ feature('Create a DateDelta', function() {
     });
   });
 
-  scenario('Constructor with integer params', function() {
+  scenario('Constructor with one integer param', function() {
     then('the result has the data', function(data) {
       var fn = data[0];
-      var value = parseInt(data[1]);
+      var value = parseInt(data[1], 10);
       var r = this.result;
 
       expect(r[fn] instanceof Function).toBe(true);
       expect(r[fn]()).toBe(value);
     });
+  });
+
+  scenario('Constructor with integer params', function() {
   });
 });
 
