@@ -18,6 +18,7 @@
   });
   exports.default = DateDelta;
   function DateDelta() {
+    // the default values
     this.year = 0;
     this.month = 0;
     this.day = 0;
@@ -25,6 +26,10 @@
     this.minute = 0;
     this.second = 0;
     this.millisecond = 0;
+
+    if (typeof arguments[0] === 'number') {
+      this.year = parseInt(arguments[0], 10);
+    }
   }
 
   DateDelta.prototype.getYear = function getYear() {

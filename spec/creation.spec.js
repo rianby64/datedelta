@@ -3,13 +3,18 @@ var DateDelta = require('../index.js').default;
 loadFeature('features/creation.feature');
 
 feature('Create a DateDelta', function() {
+  when('calling new DateDelta()', function() {
+    expect(DateDelta instanceof Function).toBe(true);
+    this.result = new DateDelta();
+  });
+
+  when(/calling new DateDelta\((.*)\)/, function(_year) {
+    var year = parseInt(_year);
+    expect(DateDelta instanceof Function).toBe(true);
+    this.result = new DateDelta(year);
+  });
 
   scenario('Empty constructor', function() {
-    when('calling new DateDelta()', function() {
-      expect(DateDelta instanceof Function).toBe(true);
-      this.result = new DateDelta();
-    });
-
     then('the result has a consistent interface', function() {
       var r = this.result;
       expect(r instanceof DateDelta).toBe(true);
@@ -64,11 +69,13 @@ feature('Create a DateDelta', function() {
   });
 
   scenario('Constructor with integer params', function() {
-    given('calling new DateDelta(1)', function() {
-
-    });
     then('the result has the data', function(data) {
+      var fn = data[0];
+      var value = parseInt(data[1]);
+      var r = this.result;
 
+      expect(r[fn] instanceof Function).toBe(true);
+      expect(r[fn]()).toBe(value);
     });
   });
 });
