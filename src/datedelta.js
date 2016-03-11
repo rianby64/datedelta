@@ -1,6 +1,13 @@
 'use strict';
 
 export default function DateDelta() {
+  var flag_obj = false;
+  function test_flag_obj() {
+    if (flag_obj) {
+      throw new Error('DateDelta already created with an object');
+    }
+  }
+
   // the default values
   this.year = 0;
   this.month = 0;
@@ -10,11 +17,20 @@ export default function DateDelta() {
   this.second = 0;
   this.millisecond = 0;
 
+
   if ((arguments.length > 0) && (typeof(arguments[0]) === 'number')) {
     this.year = parseInt(arguments[0], 10);
   }
 
+  if ((arguments.length > 0) && (typeof(arguments[0]) === 'object')) {
+    flag_obj = true;
+    for (var key in arguments[0]) {
+      this[key] = arguments[0][key];
+    }
+  }
+
   if ((arguments.length > 1) && (typeof(arguments[1]) === 'number')) {
+    test_flag_obj();
     this.month = parseInt(arguments[1], 10);
   }
 

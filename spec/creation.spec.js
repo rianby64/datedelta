@@ -104,6 +104,14 @@ feature('Create a DateDelta', function() {
 
   scenario('Constructor with integer params', function() {
   });
+
+  scenario('Constructor with an object', function() {
+    when('calling new DateDelta(obj)', function(data) {
+      var obj = JSON.parse(data);
+      expect(DateDelta instanceof Function).toBe(true);
+      this.result = new DateDelta(obj);
+    });
+  });
 });
 
 

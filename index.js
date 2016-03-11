@@ -17,7 +17,21 @@
     value: true
   });
   exports.default = DateDelta;
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+  };
+
   function DateDelta() {
+    var flag_obj = false;
+    function test_flag_obj() {
+      if (flag_obj) {
+        throw new Error('DateDelta already created with an object');
+      }
+    }
+
     // the default values
     this.year = 0;
     this.month = 0;
@@ -31,7 +45,15 @@
       this.year = parseInt(arguments[0], 10);
     }
 
+    if (arguments.length > 0 && _typeof(arguments[0]) === 'object') {
+      flag_obj = true;
+      for (var key in arguments[0]) {
+        this[key] = arguments[0][key];
+      }
+    }
+
     if (arguments.length > 1 && typeof arguments[1] === 'number') {
+      test_flag_obj();
       this.month = parseInt(arguments[1], 10);
     }
 

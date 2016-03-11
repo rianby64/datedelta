@@ -19,3 +19,13 @@ Feature: Create a DateDelta
       | getMinute      |   55 |
       | getSecond      |   59 |
       | getMillisecond | 1000 |
+
+  Scenario: Constructor with an object
+    When calling new DateDelta(obj)
+      | { "year": 2016, "month": 12, "day": 31 } |
+    Then the result has the data
+      | getYear        | 2016 |
+      | getMonth       |   12 |
+      | getDay         |   31 |
+
+
