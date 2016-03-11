@@ -17,7 +17,6 @@ export default function DateDelta() {
   this.second = 0;
   this.millisecond = 0;
 
-
   if ((arguments.length > 0) && (typeof(arguments[0]) === 'number')) {
     this.year = parseInt(arguments[0], 10);
   }
@@ -54,6 +53,10 @@ export default function DateDelta() {
     this.millisecond = parseInt(arguments[6], 10);
   }
 }
+
+DateDelta.prototype.toDate = function toDate(date) {
+
+};
 
 DateDelta.prototype.getYear = function getYear() {
   return this.year;

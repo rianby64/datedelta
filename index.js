@@ -78,6 +78,8 @@
     }
   }
 
+  DateDelta.prototype.toDate = function toDate(date) {};
+
   DateDelta.prototype.getYear = function getYear() {
     return this.year;
   };
