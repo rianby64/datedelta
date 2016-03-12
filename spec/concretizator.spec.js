@@ -32,6 +32,8 @@ feature('Concrete a date', function() {
                        dd.getHours() * 1000 * 60 * 60 +
                         dd.getDays() * 1000 * 60 * 60 * 24;
 
+      this.concretedate.setMonth(this.concretedate.getMonth() + dd.getMonths());
+      this.concretedate.setFullYear(this.concretedate.getFullYear() + dd.getYear());
       var delta = this.dateresolved - this.concretedate;
       expect(delta).toBe(computed);
     });
