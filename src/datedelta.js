@@ -55,7 +55,29 @@ export default function DateDelta() {
 }
 
 DateDelta.prototype.toDate = function toDate(date) {
+  var dateresolved = new Date(date);
 
+  var milliseconds = dateresolved.getMilliseconds() + this.getMilliseconds();
+  dateresolved.setMilliseconds(milliseconds);
+
+  var seconds = dateresolved.getSeconds() + this.getSeconds();
+  dateresolved.setSeconds(seconds);
+
+  var minutes = dateresolved.getMinutes() + this.getMinutes();
+  dateresolved.setMinutes(minutes);
+
+  var hours = dateresolved.getHours() + this.getHours();
+  dateresolved.setHours(hours);
+
+  var days = dateresolved.getMilliseconds() + this.day * 24 * 60 * 60 * 1000;
+  dateresolved.setMilliseconds(days);
+
+  var months = dateresolved.getMonth() + this.month;
+  dateresolved.setMonth(months);
+
+  var year = dateresolved.getFullYear() + this.year;
+  dateresolved.setFullYear(year);
+  return dateresolved;
 };
 
 DateDelta.prototype.getYear = function getYear() {

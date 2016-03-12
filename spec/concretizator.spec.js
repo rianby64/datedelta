@@ -6,7 +6,7 @@ feature('Concrete a date', function() {
   scenario('A date ahead', function() {
     given('a date delta with param', function(data) {
       var obj = JSON.parse(data);
-      this.result = new DateDelta(obj);
+      this.datedelta = new DateDelta(obj);
     });
 
     and('a concrete date', function(data) {
@@ -14,17 +14,26 @@ feature('Concrete a date', function() {
       if (data === 'now') {
         concreteDate = new Date();
       }
-      this.concreteDate = concreteDate;
+      this.concretedate = concreteDate;
     });
 
     when('resolving toDate with a concrete date', function() {
-      expect(this.concreteDate instanceof Date).toBe(true);
-      expect(this.result.toDate instanceof Function).toBe(true);
-      this.resolved = this.result.toDate(this.concreteDate);
+      expect(this.concretedate instanceof Date).toBe(true);
+      expect(this.datedelta.toDate instanceof Function).toBe(true);
+      this.dateresolved = this.datedelta.toDate(this.concretedate);
     });
 
-    then('the result is ahead in', function(data) {
-      //console.log(data, "then");
+    then('| resolved - concrete | = the given delta', function() {
+      expect(this.dateresolved instanceof Date).toBe(true);
+      var dd = this.datedelta;
+      var computed = dd.getMilliseconds() +
+                     dd.getSeconds() * 1000 +
+                     dd.getMinutes() * 1000 * 60 +
+                       dd.getHours() * 1000 * 60 * 60 +
+                        dd.getDays() * 1000 * 60 * 60 * 24;
+
+      var delta = this.dateresolved - this.concretedate;
+      expect(delta).toBe(computed);
     });
   });
 });
