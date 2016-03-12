@@ -1,0 +1,24 @@
+{
+  "name": "datedelta",
+  "description": "Date Delta for Javascript",
+  "main": "index.js",
+  "authors": [
+    "Andres Rios <rianby64@gmail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Date",
+    "Delta",
+    "DeltaDate",
+    "Javascript"
+  ],
+  "homepage": "https://github.com/rianby64/datedelta",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
