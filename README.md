@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/rianby64/datedelta.svg?branch=master)](https://travis-ci.org/rianby64/datedelta)
 # Date Delta
 Date Delta is an object that refers to a delta that may be given in years, months, days, hours, minutes, seconds, milliseconds. A date delta can be resolved by calling toDate with a concrete date as parametr.
 
