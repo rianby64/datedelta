@@ -1,7 +1,8 @@
 'use strict';
 
 export default function DateDelta() {
-  var flag_obj = false;
+  var flag_obj = false,
+      parse;
   function test_flag_obj() {
     if (flag_obj) {
       throw new Error('DateDelta already created with an object');
@@ -17,40 +18,66 @@ export default function DateDelta() {
   this.second = 0;
   this.millisecond = 0;
 
-  if ((arguments.length > 0) && (typeof(arguments[0]) === 'number')) {
-    this.year = parseInt(arguments[0], 10);
-  }
-
   if ((arguments.length > 0) && (typeof(arguments[0]) === 'object')) {
     flag_obj = true;
     for (var key in arguments[0]) {
       this[key] = arguments[0][key];
     }
+  } else if (arguments.length > 0) {
+    parse = parseInt(arguments[0], 10);
+    if (parse.toString() !== arguments[0].toString()) {
+      throw new Error(`argument ${arguments[0]} isn't integer`);
+    }
+    this.year = parse;
   }
 
-  if ((arguments.length > 1) && (typeof(arguments[1]) === 'number')) {
+  if (arguments.length > 1) {
     test_flag_obj();
-    this.month = parseInt(arguments[1], 10);
+    parse = parseInt(arguments[1], 10);
+    if (parse.toString() !== arguments[1].toString()) {
+      throw new Error(`argument ${arguments[1]} isn't integer`);
+    }
+    this.month = parse;
   }
 
-  if ((arguments.length > 2) && (typeof(arguments[2]) === 'number')) {
-    this.day = parseInt(arguments[2], 10);
+  if (arguments.length > 2) {
+    parse = parseInt(arguments[2], 10);
+    if (parse.toString() !== arguments[2].toString()) {
+      throw new Error(`argument ${arguments[2]} isn't integer`);
+    }
+    this.day = parse;
   }
 
-  if ((arguments.length > 3) && (typeof(arguments[3]) === 'number')) {
-    this.hour = parseInt(arguments[3], 10);
+  if (arguments.length > 3) {
+    parse = parseInt(arguments[3], 10);
+    if (parse.toString() !== arguments[3].toString()) {
+      throw new Error(`argument ${arguments[3]} isn't integer`);
+    }
+    this.hour = parse;
   }
 
-  if ((arguments.length > 4) && (typeof(arguments[4]) === 'number')) {
-    this.minute = parseInt(arguments[4], 10);
+  if (arguments.length > 4) {
+    parse = parseInt(arguments[4], 10);
+    if (parse.toString() !== arguments[4].toString()) {
+      throw new Error(`argument ${arguments[4]} isn't integer`);
+    }
+    this.minute = parse;
   }
 
-  if ((arguments.length > 5) && (typeof(arguments[5]) === 'number')) {
-    this.second = parseInt(arguments[5], 10);
+  if (arguments.length > 5) {
+    parse = parseInt(arguments[5], 10);
+    if (parse.toString() !== arguments[5].toString()) {
+      throw new Error(`argument ${arguments[5]} isn't integer`);
+    }
+    this.second = parse;
   }
 
-  if ((arguments.length > 6) && (typeof(arguments[6]) === 'number')) {
-    this.millisecond = parseInt(arguments[6], 10);
+  if (arguments.length > 6) {
+    parse = parseInt(arguments[6], 10);
+    if (parse.toString() !== arguments[6].toString()) {
+      throw new Error(`argument ${arguments[6]} isn't integer`);
+    }
+    this.millisecond = parse;
   }
 }
 

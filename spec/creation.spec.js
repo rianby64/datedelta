@@ -112,6 +112,80 @@ feature('Create a DateDelta', function() {
       this.result = new DateDelta(obj);
     });
   });
+
+  scenario('Constructor with erroneous values', function() {
+    when(/calling new DateDelta\("(\w+)"\)/, function(year) {
+      this.params = {};
+      this.params.year = year;
+    });
+    when(/calling new DateDelta\("(\w+)", "(\w+)"\)/, function(year, month) {
+      this.params = {};
+      this.params.year = year;
+      this.params.month = month;
+    });
+    when(/calling new DateDelta\("(\w+)", "(\w+)", "(\w+)"\)/, function(year, month, day) {
+      this.params = {};
+      this.params.year = year;
+      this.params.month = month;
+      this.params.day = day;
+    });
+    when(/calling new DateDelta\("(\w+)", "(\w+)", "(\w+)", "(\w+)"\)/, function(year, month, day, hour) {
+      this.params = {};
+      this.params.year = year;
+      this.params.month = month;
+      this.params.day = day;
+      this.params.hour = hour;
+    });
+    when(/calling new DateDelta\("(\w+)", "(\w+)", "(\w+)", "(\w+)", "(\w+)"\)/, function(year, month, day, hour, minute) {
+      this.params = {};
+      this.params.year = year;
+      this.params.month = month;
+      this.params.day = day;
+      this.params.hour = hour;
+      this.params.minute = minute;
+    });
+    when(/calling new DateDelta\("(\w+)", "(\w+)", "(\w+)", "(\w+)", "(\w+)", "(\w+)"\)/, function(year, month, day, hour, minute, second) {
+      this.params = {};
+      this.params.year = year;
+      this.params.month = month;
+      this.params.day = day;
+      this.params.hour = hour;
+      this.params.minute = minute;
+      this.params.second = second;
+    });
+    when(/calling new DateDelta\("(\w+)", "(\w+)", "(\w+)", "(\w+)", "(\w+)", "(\w+)", "(\w+)"\)/, function(year, month, day, hour, minute, second, millisecond) {
+      this.params = {};
+      this.params.year = year;
+      this.params.month = month;
+      this.params.day = day;
+      this.params.hour = hour;
+      this.params.minute = minute;
+      this.params.second = second;
+      this.params.millisecond = millisecond;
+    });
+    then('throw an error', function() {
+      var that = this;
+      function testConstructor() {
+        var p = that.params;
+        if (p.millisecond) {
+          new DateDelta(p.year, p.month, p.day, p.hour, p.minute, p.second, p.millisecond);
+        } else if (p.second) {
+          new DateDelta(p.year, p.month, p.day, p.hour, p.minute, p.second);
+        } else if (p.minute) {
+          new DateDelta(p.year, p.month, p.day, p.hour, p.minute);
+        } else if (p.hour) {
+          new DateDelta(p.year, p.month, p.day, p.hour);
+        } else if (p.day) {
+          new DateDelta(p.year, p.month, p.day);
+        } else if (p.month) {
+          new DateDelta(p.year, p.month);
+        } else if (p.year) {
+          new DateDelta(p.year);
+        }
+      }
+      expect(testConstructor).toThrow();
+    });
+  });
 });
 
 

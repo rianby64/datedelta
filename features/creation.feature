@@ -28,4 +28,19 @@ Feature: Create a DateDelta
       | getMonth       |   12 |
       | getDay         |   31 |
 
+  Scenario: Constructor with erroneous values
+    When calling new DateDelta("2016a")
+    Then throw an error
+    When calling new DateDelta("2016", "12a")
+    Then throw an error
+    When calling new DateDelta("2016", "12", "31a")
+    Then throw an error
+    When calling new DateDelta("2016", "12", "31", "23a")
+    Then throw an error
+    When calling new DateDelta("2016", "12", "31", "23", "59a")
+    Then throw an error
+    When calling new DateDelta("2016", "12", "31", "23", "59", "59a")
+    Then throw an error
+    When calling new DateDelta("2016", "12", "31", "23", "59", "59", "999a")
+    Then throw an error
 
