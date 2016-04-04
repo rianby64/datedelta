@@ -81,6 +81,34 @@ export default function DateDelta() {
   }
 }
 
+DateDelta.prototype.toString = function toString() {
+  var toString = '',
+      test = true;
+  if (this.getYear() > 0) { toString += `${this.getYear()}`; }
+  toString += ', ';
+  if (this.getMonth() > 0) { toString += `${this.getMonth()}`; }
+  toString += ', ';
+  if (this.getDay() > 0) { toString += `${this.getDay()}`; }
+  toString += ', ';
+  if (this.getHour() > 0) { toString += `${this.getHour()}`; }
+  toString += ', ';
+  if (this.getMinute() > 0) { toString += `${this.getMinute()}`; }
+  toString += ', ';
+  if (this.getSecond() > 0) { toString += `${this.getSecond()}`; }
+  toString += ', ';
+  if (this.getMillisecond() > 0) { toString += `${this.getMillisecond()}`; }
+  while (test) {
+    test = toString.slice(toString.length - 2);
+    if (test === ', ') {
+      toString = toString.slice(0, toString.length - 2);
+      test = true;
+    } else {
+      test = false;
+    }
+  }
+  return toString;
+};
+
 DateDelta.prototype.toDate = function toDate(date) {
   var dateresolved = new Date(date);
 
@@ -96,13 +124,13 @@ DateDelta.prototype.toDate = function toDate(date) {
   var hours = dateresolved.getHours() + this.getHours();
   dateresolved.setHours(hours);
 
-  var days = dateresolved.getMilliseconds() + this.day * 24 * 60 * 60 * 1000;
+  var days = dateresolved.getMilliseconds() + this.getDay() * 24 * 60 * 60 * 1000;
   dateresolved.setMilliseconds(days);
 
-  var months = dateresolved.getMonth() + this.month;
+  var months = dateresolved.getMonth() + this.getMonth();
   dateresolved.setMonth(months);
 
-  var year = dateresolved.getFullYear() + this.year;
+  var year = dateresolved.getFullYear() + this.getYear();
   dateresolved.setFullYear(year);
   return dateresolved;
 };

@@ -8,7 +8,15 @@ feature('Create a DateDelta', function() {
     this.result = new DateDelta();
   });
 
-  when(/calling new DateDelta\(([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+), +([0-9]+)\)/, function(_year, _month, _day, _hour, _minute, _second, _millisecond) {
+  when(/calling new DateDelta\(([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,})\)/, function(_year, _month, _day, _hour, _minute, _second, _millisecond) {
+    if (_year === '') _year = 0;
+    if (_month === '') _month = 0;
+    if (_day === '') _day = 0;
+    if (_hour === '') _hour = 0;
+    if (_minute === '') _minute = 0;
+    if (_second === '') _second = 0;
+    if (_millisecond === '') _millisecond = 0;
+
     var year = parseInt(_year, 10);
     var month = parseInt(_month, 10);
     var day = parseInt(_day, 10);
@@ -111,6 +119,10 @@ feature('Create a DateDelta', function() {
       expect(DateDelta instanceof Function).toBe(true);
       this.result = new DateDelta(obj);
     });
+  });
+
+  then(/toString\(\) is "(.*)"/, function(toString) {
+    expect(this.result + '').toBe(toString);
   });
 
   scenario('Constructor with erroneous values', function() {
