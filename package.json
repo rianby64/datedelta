@@ -1,6 +1,6 @@
 {
   "name": "datedelta",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Delta Date for Javascript",
   "main": "index.js",
   "scripts": {
