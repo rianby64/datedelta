@@ -39,6 +39,16 @@ Feature: Create a DateDelta
       | getSecond      | 1000 |
     And toString() is "2016, 12, 31, , , 1000"
 
+  Scenario: Constructor with an object
+    When calling new DateDelta(obj)
+      | { "years": 2016, "months": 12, "days": 31, "seconds": 1000 } |
+    Then the result has the data
+      | getYear        | 2016 |
+      | getMonth       |   12 |
+      | getDay         |   31 |
+      | getSecond      | 1000 |
+    And toString() is "2016, 12, 31, , , 1000"
+
   Scenario: Constructor with erroneous values
     When calling new DateDelta("2016a")
     Then throw an error

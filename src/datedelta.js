@@ -2,7 +2,7 @@
 
 export default function DateDelta() {
   var flag_obj = false,
-      parse;
+      parse, _key;
   function test_flag_obj() {
     if (flag_obj) {
       throw new Error('DateDelta already created with an object');
@@ -21,7 +21,15 @@ export default function DateDelta() {
   if ((arguments.length > 0) && (typeof(arguments[0]) === 'object')) {
     flag_obj = true;
     for (var key in arguments[0]) {
-      this[key] = arguments[0][key];
+      _key = key;
+      if (_key === 'years') { _key = 'year'; }
+      if (_key === 'months') { _key = 'month'; }
+      if (_key === 'days') { _key = 'day'; }
+      if (_key === 'hours') { _key = 'hour'; }
+      if (_key === 'minutes') { _key = 'minute'; }
+      if (_key === 'seconds') { _key = 'second'; }
+      if (_key === 'milliseconds') { _key = 'millisecond'; }
+      this[_key] = arguments[0][key];
     }
   } else if (arguments.length > 0) {
     parse = parseInt(arguments[0], 10);
