@@ -71,11 +71,20 @@
         this[_key] = arguments[0][key];
       }
     } else if (arguments.length > 0) {
-      parse = parseInt(arguments[0], 10);
-      if (parse.toString() !== arguments[0].toString()) {
-        throw new Error('argument ' + arguments[0] + ' isn\'t integer');
+      var go_ahead = true;
+      if (typeof arguments[0] === 'string' && !/[^\d ,]/.test(arguments[0])) {
+        DateDelta.apply(this, (arguments[0] + ',').match(/(\d{0,}), {0,}/g).map(function (item) {
+          return parseInt(item.replace(/,/g, '').replace(/ /g, ''), 10);
+        }));
+        go_ahead = false;
       }
-      this.year = parse;
+      if (go_ahead) {
+        parse = parseInt(arguments[0], 10);
+        if (parse.toString() !== arguments[0].toString()) {
+          throw new Error('argument ' + arguments[0] + ' isn\'t integer');
+        }
+        this.year = parse;
+      }
     }
 
     if (arguments.length > 1) {
