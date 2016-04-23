@@ -65,3 +65,8 @@ Feature: Create a DateDelta
     When calling new DateDelta("2016", "12", "31", "23", "59", "59", "999a")
     Then throw an error
 
+  Scenario: Constructor that clones another DateDelta object
+    Given a new DateDelta(2016, 12, 31, 23, 55, 59, 1000)
+    When calling new DateDelta(this.givenDateDelta)
+    Then the result is equal to the given DateDelta
+

@@ -198,6 +198,18 @@ feature('Create a DateDelta', function() {
       expect(testConstructor).toThrow();
     });
   });
+
+  scenario(/Constructor that clones another DateDelta object/, function() {
+    given(/a new DateDelta\(2016, 12, 31, 23, 55, 59, 1000\)/, function() {
+
+    });
+    when(/calling new DateDelta\(this.givenDateDelta\)/, function() {
+
+    });
+    then(/the result is equal to the given DateDelta/, function() {
+
+    });
+  });
 });
 
 
