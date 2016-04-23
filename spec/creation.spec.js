@@ -200,14 +200,31 @@ feature('Create a DateDelta', function() {
   });
 
   scenario(/Constructor that clones another DateDelta object/, function() {
-    given(/a new DateDelta\(2016, 12, 31, 23, 55, 59, 1000\)/, function() {
+    given(/a new DateDelta\(([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,}), +([0-9]{0,})\)/, function(_year, _month, _day, _hour, _minute, _second, _millisecond) {
+      // CONSIDER THIS IMPLEMENTATION A COPY OF #L11
+      if (_year === '') _year = 0;
+      if (_month === '') _month = 0;
+      if (_day === '') _day = 0;
+      if (_hour === '') _hour = 0;
+      if (_minute === '') _minute = 0;
+      if (_second === '') _second = 0;
+      if (_millisecond === '') _millisecond = 0;
 
+      var year = parseInt(_year, 10);
+      var month = parseInt(_month, 10);
+      var day = parseInt(_day, 10);
+      var hour = parseInt(_hour, 10);
+      var minute = parseInt(_minute, 10);
+      var second = parseInt(_second, 10);
+      var millisecond = parseInt(_millisecond, 10);
+      expect(DateDelta instanceof Function).toBe(true);
+      this.givenDateDelta = new DateDelta(year, month, day, hour, minute, second, millisecond);
     });
     when(/calling new DateDelta\(this.givenDateDelta\)/, function() {
-
+      this.result = new DateDelta(this.givenDateDelta);
     });
     then(/the result is equal to the given DateDelta/, function() {
-
+      expect(this.result.toString()).toBe(this.givenDateDelta.toString());
     });
   });
 });
